@@ -7,6 +7,9 @@ public class Problem218 {
 	static double[][] C = {{-1,2,2},{-2,1,2},{-2,2,3}};
 	public static void main(String[] args)
 	{
+		/*
+		*	The answer is 0.
+		*/
 		double[][] start = {{3},{4},{5}};
 		double curtail  = Math.pow(10,3);
 		recurseCount(start, curtail);
