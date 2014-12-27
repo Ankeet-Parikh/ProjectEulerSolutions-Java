@@ -6,7 +6,9 @@ public class Problem17 {
 
 	
 	public static void main(String[] args) {
-		HashMap h = new Hashmap()
+		/*
+		* by hand: 21124
+		*/
 
 	}
 
