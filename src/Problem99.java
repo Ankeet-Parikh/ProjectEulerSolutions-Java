@@ -2,7 +2,6 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Problem99 {
@@ -10,31 +9,29 @@ public class Problem99 {
 	
 	public static void main(String[] args) throws FileNotFoundException 
 	{
-		ArrayList<String> lines = new ArrayList<String>();
+		
 		Scanner scan = new Scanner(new File("src/base_exp.txt"));
+		int maxline  =0;
+		double maxval =0;
+		int i=1;
 		while(scan.hasNext()) 
 		{
-			lines.add(scan.nextLine());
-		}
-		double maxLineValue =0;
-		int maxLine =0;
-		for(int i =0; i< lines.size(); i++)
-		{
-			double size = expSize(Double.parseDouble(lines.get(i).split(",")[0]), Double.parseDouble(lines.get(i).split(",")[1]));
-			if(size> maxLineValue)
+			String[] line = scan.nextLine().split(",");
+			double a = Double.parseDouble(line[0]);
+			double b = Double.parseDouble(line[1]);
+			double bloga = b*Math.log(a);
+			if(bloga > maxval) 
 			{
-				maxLine = i+1;
-				maxLineValue =size;
+				maxline =i;
+				maxval = bloga;
 			}
+			i++;
 		}
 		
-		System.out.println(maxLine);
+		
+		System.out.println(maxline);
 	}
 	
-	public static double expSize(double base, double exp)
-	{
-		return exp*Math.log10(base);
-	}
 	
 }
 
