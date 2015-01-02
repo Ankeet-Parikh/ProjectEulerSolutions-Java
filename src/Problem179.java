@@ -12,7 +12,6 @@ public class Problem179 {
 				if(d[i] == d[i-1])
 					n++;
 		}
-		
 		System.out.println(n);
 		
 	}
