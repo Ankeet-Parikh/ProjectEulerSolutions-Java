@@ -13,6 +13,7 @@ public class Problem59 {
 			text[i] = (char) Integer.parseInt(input[i]);
 		int a = 97, z =122, sum =0;
 		int[] key = new int[3];
+		boolean complete = false;
 		for(int i= a; i<=z; i++)
 		{
 			key[0] =i;
@@ -28,11 +29,16 @@ public class Problem59 {
 					{
 						//only one string will pass the condition of the if statement
 						sum+=sumASCII(orig);
-						System.out.print("Key:" + key[0] + " " +key[1] +" " +key[2] +"   ");
+						System.out.println("Key:" + key[0] + " " +key[1] +" " +key[2] +"   ");
 						System.out.println(o);
+						complete = true;
+						break;
+						
 					}
 				}
+				if(complete) break;
 			}
+			if(complete) break;
 		}
 		System.out.println(sum);
 	}
