@@ -5,19 +5,73 @@ public class Problem51 {
 	static int[] primes = new int[0]; //size is arbitrary, will be changed
 	public static void main(String [] args)
 	{
-		int range = (int)1e2; //the upper bound is just a guess
+		int range = (int)1e6; //the upper bound is just a guess
 		primeSieve(range);
-		//for each prime, we will determine
+		/*
+		 * To solve this problem, we will go through each prime, do each possible replacement, and
+		 * see which primes are in the prime family. If the prime family list is equal to 8, then 
+		 * we print the smallest prime, otherwise continue.
+		 */
+		int tfs = 8; //tgf: "target family size"
+		int result =0;
+		boolean found =false;
+		int[][] replacements = new int[0][0];//the size will be changed as necessary
+		
+		for(int i=0; i<primes.length; i++)
+		{
+			int p = primes[i]; //current prime
+			int plength = (int)(Math.log10(p) +1);
+			if(plength != replacements.length) //if p has one more digit than the p before it
+			{
+				for(int j=1; j<=plength; j++) //generates all the replacements for a plength-digit number
+				{
+					replacements = j==1?replist(plength, j, null): append(replacements,replist(plength, j, null));
+				}
+			}
+			
+			for(int j=0; j<replacements.length; j++)//go through each possible replacement
+			{
+				int[] family = new int[0];
+				for(int k =0; k<=9; k++)//go through the integers 1-9
+				{
+					int val = replace(p,k, replacements[j]);
+					if(((int)Math.log10(val) == (int)Math.log10(p)) && isPrime(val))
+					{
+						if(family.length ==0) 
+						{
+							family = new int[1];
+							family[0] =val;
+						}
+						else family = append(family, val);
+					}
+				}
+				found = family.length == tfs;
+				if(found) 
+				{
+					Print1d(family);
+					System.out.println("");
+					result = family[0];
+					break;
+				}
+			}
+			if(found) break;
+		}
+		System.out.println(result);
 		
 		
 		
 		
 	}
 	
+	public static int replace(int n, int d,  int[] ind)
+	{
+		char[] a = String.valueOf(n).toCharArray();
+		for(int i=0;i<ind.length; i++)
+			a[ind[i]] =(char)(d+48); //48 corresponds to zero, 49 to 1, 50 to 2 
+		return Integer.parseInt(new String(a));
+		
+	}
 	
-		
-		
-		
 	public static int[][] replist(int nd, int e, int[] prev)
 	{
 		/*
@@ -112,7 +166,7 @@ public class Problem51 {
 		for(int i= 0; i<primes.length; i++)
 		{
 			int p = primes[i];
-			if(p>Math.sqrt(n))
+			if(p> Math.sqrt(n))
 				return true;
 			if(n%p == 0)
 				return false;
