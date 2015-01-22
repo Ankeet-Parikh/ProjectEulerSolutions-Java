@@ -7,7 +7,7 @@ public class Problem31 {
 	public static void main(String[] args) {
 		
 		
-		System.out.println(ways2(2000));
+		System.out.println(ways2(200));
 	}
 	
 	public static long ways(long target, int curr)

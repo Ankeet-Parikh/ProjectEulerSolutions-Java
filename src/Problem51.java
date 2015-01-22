@@ -2,15 +2,18 @@ import java.util.ArrayList;
 
 
 public class Problem51 {
+	
 	static int[] primes = new int[0]; //size is arbitrary, will be changed
 	public static void main(String [] args)
 	{
+		
 		int range = (int)1e6; //the upper bound is just a guess
 		primeSieve(range);
 		/*
 		 * To solve this problem, we will go through each prime, do each possible replacement, and
 		 * see which primes are in the prime family. If the prime family list is equal to 8, then 
 		 * we print the smallest prime, otherwise continue.
+		 * Runs in ~1.2 seconds
 		 */
 		int tfs = 8; //tgf: "target family size"
 		int result =0;
