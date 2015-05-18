@@ -23,18 +23,14 @@ What is the value of the first triangle number to have over five hundred divisor
 public class Problem12 {
 
 	public static void main(String[] args) {
-		int sum =0, highest =0;
+		int sum =0;
 		for(int i =1; ; i++)
 		{
 			sum+=i;
 			int numdiv = numDivisors(sum);
 			if(numdiv > 500) 
 				break;
-			if(numdiv > highest) 
-			{
-				highest = numdiv;
-				//System.out.println("@: " +sum +": " +highest);
-			}
+			
 		}
 		System.out.println(sum);
 

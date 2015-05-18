@@ -25,6 +25,22 @@ public class Problem2 {
 			counter++;
 		}
 		System.out.println((int)sum);
+		System.out.println(ans());
 	}
-
+	
+	public static long ans()
+	{
+		int a = 1;
+		int b = 1;
+		int c = a+b;
+		long sum =0;
+		while(c <= 4000000)
+		{
+			if(c%2 == 0) sum+=c;
+			a = b;
+			b = c;
+			c = a+b;
+		}
+		return sum;
+	}
 }

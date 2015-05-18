@@ -23,7 +23,6 @@ public class Problem387 {
 				if( curr > 10 && isPrime(prev/sd))
 				{
 					sum+=curr;
-					//System.out.println(curr);
 				}
 			}
 			if(curr % (sd+i) == 0)
@@ -37,9 +36,6 @@ public class Problem387 {
 	
 	public static boolean isPrime(long n)
 	{
-		/*
-		 * Fastest way to test for primality with large numbers
-		 */
 		return new BigInteger(""+n).isProbablePrime(10);
 	}
 	

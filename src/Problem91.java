@@ -8,11 +8,45 @@ public class Problem91 {
 	 */
 	public static void main(String[] args)
 	{
-		int a = 0, b =0, c = 8, d = 10;
-		System.out.println(gcd(c-a,d-b)+1);
+		int n = 50;
+		int c = n*n;
+		
+		for(int x =0; x <=n ;x++)
+		{
+			for(int y = 1; y <=n; y++)
+			{
+				c+=2*count(x,y,n);
+			}
+		}
+		System.out.println(c);
 	}
-	public static long gcd(long a, long b)
+	public static int count(int x, int y, int n)
 	{
-		return b==0? a: gcd(b, a%b);
+		//right angle is at (x,y)
+		if(x == 0)
+		{
+			if(y ==0) return 0;
+			return n;
+		}
+		else
+		{
+			int g =gcd(x,y);
+			int pdx = y/g;
+			int pdy = x/g;
+			int xlat =(n-x)/pdx;
+			int ylat =y/pdy;
+			return min(xlat, ylat);
+		}
 	}
+	
+	
+	public static int gcd(int a, int b)
+	{
+		return b == 0 ? a : gcd(b, a%b);
+	}
+	public static int min(int a, int b)
+	{
+		return a > b? b : a;
+	}
+	
 }

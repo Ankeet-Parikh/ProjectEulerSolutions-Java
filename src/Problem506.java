@@ -1,7 +1,7 @@
 import java.math.BigInteger;
 
 
-public class Problem504 {
+public class Problem506 {
 	static long[] seq = {1,2,3,4,3,2};
 	public static void main(String[] args)
 	{
@@ -120,4 +120,5 @@ public class Problem504 {
 		}
 		return sum%=mod;
 	}
+
 }

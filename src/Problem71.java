@@ -5,6 +5,7 @@ public class Problem71 {
 	{
 		//Can solve this with paper and pencil
 		System.out.println(428570);
+		
+		
 	}
-	
 }

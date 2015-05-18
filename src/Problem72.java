@@ -3,7 +3,7 @@ public class Problem72 {
 	public static void main(String [] args)
 	{
 		
-		int range =1000000;
+		int range =(int)1e6;
 		System.out.println(sumtotientBatch(range));
 		
 	}

@@ -1,6 +1,5 @@
 
 import java.text.DecimalFormat;
-import java.util.*;
 
 public class Problem255 {
 
@@ -20,8 +19,7 @@ public class Problem255 {
 		 double sum=SumOverInterval(Math.pow(10, digits-1),Math.pow(10,digits)-1 , x_0, 1);
 		 
 		 double ans = (double) sum/(9*Math.pow(10, digits-1));
-		 DecimalFormat df = new DecimalFormat("#.0000000000");
-		 System.out.println(df.format(ans));
+		 System.out.printf("%.10f" , ans);
 		 
 		
 		
@@ -36,7 +34,7 @@ public class Problem255 {
 		
 		for(double l =lower, u =(lowerXMult > upper) ?upper :lowerXMult; u<=upper; )
 		{
-			double xNext = Math.floor((x + Math.ceil((double) u / x)) / 2.0);
+			double xNext = Math.floor((x + Math.ceil(u / x)) / 2.0);
 			if(xNext == x)
 			{
 				sum+=i*(u-l+1);
