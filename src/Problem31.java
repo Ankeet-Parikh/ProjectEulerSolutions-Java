@@ -28,8 +28,9 @@ public class Problem31 {
 		ways[0] =1;
 		for(int i =0; i<coins2.length; i++)
 		{
-			for(int j =coins2[i]; j<ways.length; j++)
+			for(int j=1; j<ways.length; j++)
 			{
+				if(j >= coins2[i])
 				ways[j] += ways[j-coins2[i]];
 			}
 		}

@@ -43,7 +43,7 @@ public class Problem516 {
 		//System.out.println(ph);
 		//System.out.println(ph.size());
 		FindProp(0, 1);
-		System.out.println(sum);
+		//System.out.println(sum);
 	
 		System.out.println(sum%mod);
 		

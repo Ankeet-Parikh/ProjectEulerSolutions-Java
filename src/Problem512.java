@@ -1,5 +1,3 @@
-import java.math.BigInteger;
-
 
 public class Problem512 {	
 	public static void main(String[] args)
@@ -30,5 +28,5 @@ public class Problem512 {
 		System.out.println((System.currentTimeMillis() - s)/1000 + " seconds");
 	}
 	
-	
+
 }

@@ -1,63 +1,78 @@
-import java.util.ArrayList;
 
-/*
- * Create an array p which lists primality for all integers between 0 and N
- * Start at 2 and generate a tree using the two methods given. 
- * (1) A and B have the same length and differ in exactly one digit; for example, 123 ↔ 173.
- * (2) Adding one digit to the left of A (or B) makes B (or A); for example, 23 ↔ 223 and 123 ↔ 23.
- * If an integer is a two's relative, mark it false in p. An prime that was already in the tree will not be
- * in the tree again. 
- * Do not consider integers greater than N.
- */
-public class Problem425 {
-	static int r = (int)1e3;
-	public static boolean[] p = new boolean[r+1];//contains primes
-	public static int[] n2 = new int[r+1]; //contains the primes that are two's relatives
-	public static ArrayList<Integer> chains = new ArrayList<Integer>(0);
+import java.util.*;
+public class Problem425{
+	static int ct = 0;
+	static int r = 10000000;
+	static boolean[] pr = new boolean[r+1]; // i is prime iff pr[i] is true
+	static boolean[] tr = new boolean[r+1]; // i is 2s relative iff tr[i] is true and pr[i] is true
+	static int[] ma = new int[r+1]; //stores the maximum value in the chain sed to get to that number
+									//ma[t] = t for a 2s relative. ma[t] > t for other primes
 	public static void main(String[] args)
 	{
-		for(int i=2; i<p.length; i++) p[i] =true;
-		//prime sieve
-		for(int i=2; i<p.length; i++)
+		for(int i=2; i<pr.length; i++)
 		{
-			
-			for(int j =i*2;j<p.length; j+=i )
+				pr[i] = true;
+				ma[i] = Integer.MAX_VALUE;
+		}
+		for(int i=2; i<pr.length; i++)
+		{
+			if(pr[i])
+				for(int j = 2*i; j<pr.length; j+=i)
+				{
+					pr[j] = false;
+				}
+		}
+		System.out.println("Done Sieving");
+		int[][] ti = new int[r+1][];
+		for(int i=2; i<pr.length; i++)
+		{
+			if(pr[i]) 
 			{
-				p[j] =false; 
+				ArrayList<Integer> can = turnInto(i);
+				ti[i] = new int[can.size()];
+				for(int j =0; j<can.size(); j++)
+					ti[i][j] = can.get(j);
+				
 			}
 		}
-		for(int i=0; i<p.length; i++) if(p[i]) n2[i] =i;
-		generateChains(2);
-		long sum=0;
-		for(int i=0; i<p.length; i++)
-			sum+=p[i]?i:0;
-		System.out.println(sum);
+		System.out.println("Done figuring out transformations.");
+		System.out.println(ct);
 	}
-	public static void generateChains(int prev)
+	
+	public static ArrayList<Integer> turnInto(int n)
 	{
-		//add p to the chains list
-		chains.add(prev);
-		//generate replacements
-		String s = "" +prev;
-		for(int i=0; i<s.length(); i++)
+		ArrayList<Integer> t = new ArrayList<Integer>();
+		if(n > 10)
 		{
-			for(int j =0; j<10; j++)
+			int a = in((""+n).substring(1));
+			if(pr[a]) t.add(a);
+		}
+		if(10*n <=r)
+		for(int i=1; i<=9; i++) //add to front
+		{
+			int a = in(i+""+n);
+			if(pr[a]) t.add(a);
+		}
+		//replace
+		char[] c = ("" + n).toCharArray();
+		for(int l = 0; l<c.length; l++)
+		{
+			for(int i = 0; i<=9; i++)
 			{
-				String n = s.substring(0, i) + j;
-				if(i<s.length()-1) n+=s.substring(i+1, s.length());
-				int k = Integer.parseInt(n);
-				if(k != prev && k<=r && p[k]) generateChains(k);
+				if(l ==0 && i ==0) continue;
+				char p = c[l];
+				c[l] = (char)('0'+i);
+				int a = in(new String(c));
+				if(pr[a]) t.add(a);
+				c[l] = p;
 			}
 		}
-		//add to front and back
+		Collections.sort(t);
+		return t;
 	}
-	public static void remove2srels(ArrayList<Integer> arr)
+	
+	public static int in(String s)
 	{
-		int max =0; 
-		for(int i=0; i<arr.size(); i++)
-			if(arr.get(i) > max)//it is a 2s relative
-			{
-				p[i]=0;
-			}
+		return Integer.parseInt(s);
 	}
 }

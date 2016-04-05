@@ -1,23 +1,30 @@
 import java.math.BigInteger;
 
-
 public class Problem304 {
 	public static void main(String[] args)
 	{
 		double s = System.currentTimeMillis();
 		long mod = 1234567891011L;
-		long[] a = {1, 1, 1,0 };
+		long[] A = {1, 1, 1,0 };
 		
 		long sum =0;
-		for(long p =100000000000031L, i =0;i<100000; p+=2)
+		boolean p[] = SegmentedSieve();
+		//do exponentiation by squaring for the first value
+		long[] fibs = ModExp(A,100000000000000L, mod);
+		
+		long a = fibs[1], b =fibs[0];
+		//do f(n) = f(n-1) + f(n-2) for the rest
+		for(int i=0, j=0; j<100000; i++)
 		{
-			BigInteger curr = new BigInteger("" + p);
-			if(curr.isProbablePrime(2))
+			if(p[i])
 			{
-				sum += ModExp(a,p, mod)[2];
+				sum += a;
 				sum%=mod;
-				i++;
+				j++;
 			}
+			long c =(a+b)%mod;
+			a = b;
+			b = c;
 		}
 		System.out.println(sum%mod);
 		System.out.println((System.currentTimeMillis()-s)/1000 + " seconds");
@@ -60,6 +67,29 @@ public class Problem304 {
 		long[] D = ModExp(A, e/2, mod);
 		return MMultMod(D,D, mod);
 		
+	}
+	
+	public static boolean[] SegmentedSieve()
+	{
+		//returns the list of primes > 10^14
+		long l = 100000000000000L;
+		long u = l+4000000;
+		boolean p[] = new boolean[(int) (u-l+1)];
+		for(int i=0; i<p.length; i++) p[i] = true;
+		int uppertest = (int)Math.ceil(Math.sqrt(u));
+		for(int i = 2; i<=uppertest; i++)
+		{
+			long m = (l/i)*i;
+			while(m<=u)
+			{
+				if(m>=l)
+				{
+					p[(int)(m-l)] = false;
+				}
+				m+=i;
+			}
+		}
+		return p;
 	}
 
 	

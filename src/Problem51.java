@@ -60,7 +60,7 @@ public class Problem51 {
 			if(found) break;
 		}
 		System.out.println(result);
-		
+		Print2d(replist(19,1,null));
 		
 		
 		

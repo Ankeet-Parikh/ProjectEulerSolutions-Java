@@ -8,7 +8,7 @@ public class Problem235 {
 		 * 1.000, 1.003
 		 */
 		double v = BS(1.0001, 1.003);
-		System.out.printf("%.12f",v );
+		System.out.printf("%.12f\n",v );
 		
 	}
 	public static double BS(double l, double u)//lower < upper

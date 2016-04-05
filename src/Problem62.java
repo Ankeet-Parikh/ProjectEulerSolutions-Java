@@ -1,6 +1,4 @@
 
-
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Problem62 {
@@ -8,7 +6,7 @@ public class Problem62 {
 	{
 		long smallest =0;
 		int exp =1;
-		int targetCubes =3;
+		int targetCubes =5;
 		boolean done =false;
 		
 		while(!done)

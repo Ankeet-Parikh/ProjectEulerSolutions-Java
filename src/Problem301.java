@@ -7,7 +7,6 @@ public class Problem301 {
 		{
 			if((n^(2*n)^(3*n)) ==0) 
 			{
-				
 				c++;
 			}
 		}

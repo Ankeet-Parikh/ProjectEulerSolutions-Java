@@ -1,5 +1,4 @@
 
-import java.text.DecimalFormat;
 
 public class Problem255 {
 
@@ -19,7 +18,7 @@ public class Problem255 {
 		 double sum=SumOverInterval(Math.pow(10, digits-1),Math.pow(10,digits)-1 , x_0, 1);
 		 
 		 double ans = (double) sum/(9*Math.pow(10, digits-1));
-		 System.out.printf("%.10f" , ans);
+		 System.out.printf("%.10f\n" , ans);
 		 
 		
 		
